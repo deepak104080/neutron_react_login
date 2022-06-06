@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import "./css/golf.css";
-let timerVal;
+
 class Golf extends React.Component {
   constructor(props) {
     super(props);
@@ -19,6 +19,7 @@ class Golf extends React.Component {
     //flush addeventlister
     //flush timer variable
     clearInterval(this.timerVal);
+    window.removeEventListener('keydown', this.triggerBallMovement, false);
   }
 
   componentDidUpdate() {
@@ -32,7 +33,7 @@ class Golf extends React.Component {
   startFn = () => {
     console.log('print time in start fn...')
 
-    timerVal = setInterval(()=> {
+    this.timerVal = setInterval(()=> {
       console.log('print time...');
       this.setState({
         x: this.state.x,
@@ -55,6 +56,20 @@ class Golf extends React.Component {
       if(event.key === 'ArrowRight') {
         this.setState({
           x: this.state.x + 5,
+          y: this.state.y,
+          time: this.state.time
+        })
+      }
+      if(event.key === 'ArrowUp') {
+        this.setState({
+          x: this.state.x,
+          y: this.state.y - 5,
+          time: this.state.time
+        })
+      }
+      if(event.key === 'ArrowLeft') {
+        this.setState({
+          x: this.state.x - 5,
           y: this.state.y,
           time: this.state.time
         })
