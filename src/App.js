@@ -90,7 +90,7 @@ function App() {
                 <Route path='/hookmemo' element={<HookMemo />}/>
                 <Route path='/hookcallback' element={<HookCallback />}/>
                 
-                <Route path='/' element={<Login />}/>
+                <Route path='/' element={<Home />}/>
                 <Route path='/*' element={<NotFound />}/>
               </Routes>
             </div>

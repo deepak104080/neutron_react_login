@@ -19,8 +19,8 @@ const Login = () => {
         loginDetails.setLogin(true);
         loginDetails.setUserName(username);
         //redirection
-        navigate('/misc', {state: {username: username}});
-        
+        // navigate('/misc', {state: {username: username}});
+        navigate('/misc');
     }
 
     useEffect(() => {

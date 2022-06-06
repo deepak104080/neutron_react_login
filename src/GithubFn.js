@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { DataAppContext } from './common/DataApp';
+import {useNavigate} from 'react-router-dom';
 
 const GithubFn = () => {
     const [issuesList, setIssuesList]  = useState([]);
@@ -8,6 +9,12 @@ const GithubFn = () => {
 
     const loginDetails = useContext(DataAppContext);
     console.log(loginDetails);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(!loginDetails.isLoggedIn) {
+            navigate('/login');
+        }
+    }, [loginDetails]);
 
     // const callApi = () => {
     //     fetch(`https://api.github.com/repositories/1296269/issues?page=${pageNum}&per_page=5`)
@@ -64,7 +71,7 @@ const GithubFn = () => {
 
     return(
         <>
-        <div className='row bg-info bg-opacity-50'>
+        <div className='row bg-danger bg-opacity-50'>
             <div className='col-9'>
                 {loginDetails.isLoggedIn && <div>Hi {loginDetails.userName}</div>}
             </div>

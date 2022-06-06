@@ -1,8 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { DataAppContext } from './common/DataApp';
+import {useNavigate} from 'react-router-dom';
 
 const ColorApp = () => {
     const dataAppTemp = useContext(DataAppContext);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(!dataAppTemp.isLoggedIn) {
+            navigate('/login');
+        }
+    }, [dataAppTemp]);
     const colors = [
         {
             name: 'blue',
@@ -22,6 +29,16 @@ const ColorApp = () => {
     ];
     return(
         <>
+        <div className='row bg-danger bg-opacity-50'>
+            <div className='col-9'>
+                {dataAppTemp.isLoggedIn && <div>Hi {dataAppTemp.userName}</div>}
+            </div>
+            <div className='col-3'>
+                {dataAppTemp.isLoggedIn ? 
+                (<button onClick={() => dataAppTemp.setLogin(false)}>Logout</button>) :
+                (<button onClick={() => dataAppTemp.setLogin(true)}>Login</button>)}
+            </div>
+        </div>
 
             {
                 colors && colors.map((item, index) => (

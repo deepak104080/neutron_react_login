@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client';
 //import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Golf from './Golf';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(<Golf />);
 
 // ReactDOM.render(<App/>, document.getElementById('root'));

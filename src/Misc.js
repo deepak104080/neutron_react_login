@@ -1,20 +1,26 @@
-import React, { useContext } from "react";
-import {Link, useLocation} from 'react-router-dom';
+import React, { useContext, useEffect } from "react";
+import {Link, Navigate, useLocation, useNavigate} from 'react-router-dom';
 import {DataAppContext} from './common/DataApp';
 
 const Misc = () => {
     const loginDetails = useContext(DataAppContext);
-
-    const {state} = useLocation();
-    console.log(state);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(!loginDetails.isLoggedIn) {
+            navigate('/login');
+        }
+    }, [loginDetails]);
+   
+    // const {state} = useLocation();
+    // console.log(state);
 
     const id = '12345';
     
     return(
         <>
-            <div className='row bg-info bg-opacity-50'>
+            <div className='row bg-danger bg-opacity-50'>
                 <div className='col-9'>
-                    {loginDetails.isLoggedIn && <div>Hi {state.username || ' '}</div>}
+                    {loginDetails.isLoggedIn && <div>Hi {loginDetails.userName || ' '}</div>}
                 </div>
                 <div className='col-3'>
                     {loginDetails.isLoggedIn ? 
