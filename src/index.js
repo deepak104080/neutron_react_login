@@ -6,6 +6,6 @@ import App from './App';
 import Golf from './Golf';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Golf />);
+root.render(<App />);
 
 // ReactDOM.render(<App/>, document.getElementById('root'));
